@@ -193,7 +193,7 @@ const MealMenuSection = () => {
     useEffect(() => {
         const fetchMenu = async () => {
             try {
-                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/menus/2/`);
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/menus/1/`);
                 if (!response.ok) { throw new Error('La respuesta de la red no fue exitosa'); }
                 const data = await response.json();
                 setMenu(data);
