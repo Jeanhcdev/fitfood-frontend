@@ -82,8 +82,8 @@ const Header = ({ onContactClick }) => {
                     ))}
                 </nav>
                 <div className="hidden md:flex items-center space-x-4">
-                    <a href="#" className="bg-white text-black px-4 py-2 rounded-full transition-transform duration-300 ease-in-out transform hover:scale-105 hover:text-gray-800 border border-black hover:border-[1.5px]">Ingresar</a>
-                    <a href="#" className="bg-gradient-to-br from-yellow-300 via-lime-500 to-lime-700 text-white px-4 py-2 rounded-full hover:bg-green-600 transition-transform duration-300 ease-in-out transform hover:scale-105 hover:text-gray-800">Regístrate</a>
+                    {/*<a href="#" className="bg-white text-black px-4 py-2 rounded-full transition-transform duration-300 ease-in-out transform hover:scale-105 hover:text-gray-800 border border-black hover:border-[1.5px]">Ingresar</a>
+                    <a href="#" className="bg-gradient-to-br from-yellow-300 via-lime-500 to-lime-700 text-white px-4 py-2 rounded-full hover:bg-green-600 transition-transform duration-300 ease-in-out transform hover:scale-105 hover:text-gray-800">Regístrate</a>*/}
                 </div>
                 <div className="md:hidden">
                     <button onClick={() => setIsOpen(!isOpen)} className="text-gray-800 focus:outline-none">{isOpen ? <X size={24} /> : <Menu size={24} />}</button>
@@ -100,8 +100,8 @@ const Header = ({ onContactClick }) => {
                             )
                         ))}
                         <hr/>
-                        <a href="#" className="bg-white text-black px-4 py-2 rounded-full transition-transform duration-300 ease-in-out transform hover:scale-105 hover:text-gray-800 border border-black hover:border-[1.5px] text-center">Ingresar</a>
-                        <a href="#" className="bg-gradient-to-br from-yellow-300 via-lime-500 to-lime-700 text-white  text-center px-4 py-2 rounded-full hover:bg-green-600 hover:text-gray-800">Regístrate</a>
+                        {/*<a href="#" className="bg-white text-black px-4 py-2 rounded-full transition-transform duration-300 ease-in-out transform hover:scale-105 hover:text-gray-800 border border-black hover:border-[1.5px] text-center">Ingresar</a>
+                        <a href="#" className="bg-gradient-to-br from-yellow-300 via-lime-500 to-lime-700 text-white  text-center px-4 py-2 rounded-full hover:bg-green-600 hover:text-gray-800">Regístrate</a>*/}
                     </nav>
                 </div>
             )}
