@@ -146,7 +146,6 @@ const ProductoMenuItem = ({ producto }) => (
         </div>
     </div>
 );
-v
 
 const TabbedMenuView = ({ menu }) => {
     const categoriasDelMenu = menu.categorias || {};
