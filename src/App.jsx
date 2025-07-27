@@ -126,10 +126,14 @@ const HeroSection = () => (
     </section>
 );
 
+// --- COMPONENTE DEL ITEM DEL MENÚ CORREGIDO ---
 const ProductoMenuItem = ({ producto }) => (
     <div className="flex items-start space-x-4 p-4 border-b border-gray-200 last:border-b-0">
-        {producto.imagen ? (
-            <img src={producto.imagen} alt={producto.nombre} className="w-24 h-24 rounded-md object-cover flex-shrink-0" />
+        {/* CORRECCIÓN: Cambiamos 'producto.imagen' a 'producto.imagen_url' 
+            para que coincida con el nombre del campo en tu modelo de Django.
+        */}
+        {producto.imagen_url ? (
+            <img src={producto.imagen_url} alt={producto.nombre} className="w-24 h-24 rounded-md object-cover flex-shrink-0" />
         ) : (
             <div className="w-24 h-24 rounded-md bg-gray-200 flex-shrink-0"></div>
         )}
@@ -142,6 +146,7 @@ const ProductoMenuItem = ({ producto }) => (
         </div>
     </div>
 );
+v
 
 const TabbedMenuView = ({ menu }) => {
     const categoriasDelMenu = menu.categorias || {};
@@ -193,7 +198,7 @@ const MealMenuSection = () => {
     useEffect(() => {
         const fetchMenu = async () => {
             try {
-                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/menus/1/`);
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/menu/1/`);
                 if (!response.ok) { throw new Error('La respuesta de la red no fue exitosa'); }
                 const data = await response.json();
                 setMenu(data);
