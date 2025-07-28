@@ -1,4 +1,3 @@
-// Añadimos 'useRef' de React y los íconos de flechas.
 import React, { useState, useEffect, useRef } from 'react';
 import { Smile, Zap, Leaf, Heart, Beef,Star, Menu, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import fitfood_icono from './assets/fitfood.ico';
@@ -129,19 +128,22 @@ const HeroSection = () => (
 // --- COMPONENTE DEL ITEM DEL MENÚ CORREGIDO ---
 const ProductoMenuItem = ({ producto }) => (
     <div className="flex items-start space-x-4 p-4 border-b border-gray-200 last:border-b-0">
-        {/* CORRECCIÓN: Cambiamos 'producto.imagen' a 'producto.imagen_url' 
-            para que coincida con el nombre del campo en tu modelo de Django.
-        */}
-        {producto.imagen_url ? (
-            <img src={producto.imagen_url} alt={producto.nombre} className="w-24 h-24 rounded-md object-cover flex-shrink-0" />
-        ) : (
-            <div className="w-24 h-24 rounded-md bg-gray-200 flex-shrink-0"></div>
-        )}
+        <div className="flex-shrink-0">
+            {/* Imagen del producto */}
+            {producto.imagen_url ? (
+                <img src={producto.imagen_url} alt={producto.nombre} className="w-24 h-24 rounded-md object-cover" />
+            ) : (
+                <div className="w-24 h-24 rounded-md bg-gray-200"></div>
+            )}
+            {producto.precio_venta && (
+                <p className="font-semibold text-gray-950 mt-2 text-center">${producto.precio_venta}</p>
+            )}
+        </div>
         <div className="flex-grow">
             <h4 className="font-bold text-lg text-gray-800">{producto.nombre}</h4>
             <p className="text-gray-600 text-sm mt-1">{producto.descripcion}</p>
-            {producto.precio_venta && (
-                <p className="font-semibold text-gray-950 mt-2">${producto.precio_venta}</p>
+            {producto.calories && (
+                <p className="font-semibold text-gray-950 mt-3">{producto.calories} Calorías</p>
             )}
         </div>
     </div>
@@ -162,12 +164,14 @@ const TabbedMenuView = ({ menu }) => {
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-800">Tienes que probar</h2>
             </div>
             <div className="border-b border-gray-200">
-                <nav className="-mb-px flex space-x-6 px-6" aria-label="Tabs">
+                     {/* --- CAMBIO 2: Reducido el espaciado y padding en móviles --- */}
+                <nav className="-mb-px flex space-x-2 sm:space-x-6 px-2 sm:px-6 overflow-x-auto" aria-label="Tabs">
                     {categoriaKeys.map(categoriaKey => (
                         <button
                             key={categoriaKey}
                             onClick={() => setActiveTab(categoriaKey)}
-                            className={`whitespace-nowrap py-4 px-1 border-b-2 font-medium text-lg transition-colors duration-200 ${activeTab === categoriaKey ? 'border-lime-500 text-lime-900' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'}`}
+                            // --- CAMBIO 2: Reducido el tamaño del texto en móviles ---
+                            className={`whitespace-nowrap py-4 px-1 border-b-2 font-medium text-lg sm:text-lg transition-colors duration-200 ${activeTab === categoriaKey ? 'border-lime-500 text-lime-900' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'}`}
                         >
                             {categoriaKey.replace(/_/g, ' ')}
                         </button>
@@ -197,7 +201,7 @@ const MealMenuSection = () => {
     useEffect(() => {
         const fetchMenu = async () => {
             try {
-                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/menus/1/`);
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/menus/destacado/`);
                 if (!response.ok) { throw new Error('La respuesta de la red no fue exitosa'); }
                 const data = await response.json();
                 setMenu(data);
@@ -273,7 +277,7 @@ const MealPlanCard = ({ plan, onContactClick }) => {
                 <div className="my-6 text-center">
                     <span className="inline-block bg-green-100 text-green-800 text-lg font-semibold px-4 py-2 rounded-full">
                         {plan.permite_cantidad_personalizada 
-                            ? "Plan a Medida" 
+                            ? "Personalizado" 
                             : `${plan.cantidad_viandas} Viandas`
                         }
                     </span>
@@ -480,20 +484,20 @@ const Footer = () => (
 
 // --- COMPONENTE PRINCIPAL DE LA APP ---
 export default function App() {
-  const [isContactOpen, setIsContactOpen] = useState(false);
+const [isContactOpen, setIsContactOpen] = useState(false);
 
-  return (
-    <div className="bg-white font-sans">
-      <FloatingSocials isContactOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
-      <Header onContactClick={() => setIsContactOpen(true)} />
-      <main>
-        <HeroSection />
-        <MealMenuSection />
-        <MealPlansSection onContactClick={() => setIsContactOpen(true)} />
-        <TestimonialsSection />
-        <WhyFitFoodSection />
-      </main>
-      <Footer />
-    </div>
-  );
+    return (
+        <div className="bg-white font-sans">
+            <FloatingSocials isContactOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
+            <Header onContactClick={() => setIsContactOpen(true)} />
+            <main>
+                <HeroSection />
+                <MealMenuSection />
+                <MealPlansSection onContactClick={() => setIsContactOpen(true)} />
+                <TestimonialsSection />
+                <WhyFitFoodSection />
+            </main>
+        <Footer />
+        </div>
+);
 }
