@@ -589,7 +589,7 @@ const TestimonialsSection = () => {
             <div className="container mx-auto px-6">
                 <div className="text-center mb-12">
                     <h2 className="text-3xl md:text-4xl font-bold text-gray-800">Lo que dicen nuestros clientes</h2>
-                    <p className="text-gray-600 mt-2">Historias reales de personas reales.</p>
+                    <p className="text-gray-600 mt-2">Resultados reales.</p>
                 </div>
 
                 {/* Muestra un mensaje mientras carga o si hay un error */}
