@@ -2,7 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Smile, Zap, Leaf, Heart, Beef,Star, Menu, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import fitfood_icono from './assets/fitfood.svg';
 
-// --- COMPONENTE DE ICONOS SOCIALES ---
+
+// --- COMPONENTE DE ICONOS SOCIALES Y MODAL DE CONTACTO ---
 const FloatingSocials = ({ isContactOpen, onClose }) => {
     const whatsappNumber = "5491112345678";
     const instagramUsername = "fit.foodcomidasaludable";
@@ -17,30 +18,42 @@ const FloatingSocials = ({ isContactOpen, onClose }) => {
     );
     
     return (
-        <div className="fixed bottom-4 right-4 z-50">
-            <div className={`absolute bottom-0 right-0 transition-all duration-300 ease-in-out ${isContactOpen ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-16 pointer-events-none'}`}>
-                <div className="bg-white rounded-lg shadow-xl p-4 w-64">
-                    <div className="flex justify-between items-center mb-2">
-                        <p className="font-bold text-gray-800">Contáctanos</p>
+        <>
+            {/* --- MODAL DE CONTACTO --- */}
+            {/* Contenedor principal del modal, ocupa toda la pantalla */}
+            <div className={`fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 transition-opacity duration-150 ease-in-out ${isContactOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+                {/* Contenido del modal con su propia transición */}
+                <div className={`bg-white rounded-lg shadow-xl p-6 w-full max-w-sm transition-transform duration-150 ease-in-out ${isContactOpen ? 'scale-100' : 'scale-95'}`}>
+                    <div className="flex justify-between items-center mb-4">
+                        <h3 className="text-2xl font-bold text-gray-800">Contáctanos</h3>
                         <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
-                            <X size={20} />
+                            <X size={24} />
                         </button>
                     </div>
-                    <ul className="space-y-2">
+                    <ul className="space-y-4">
                         <li>
-                            <a href={instagramUrl} target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 text-gray-700 hover:text-[#fe057d]">
-                                <InstagramIcon /> <span>Instagram</span>
+                            <a href={instagramUrl} target="_blank" rel="noopener noreferrer" className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 transition-colors">
+                                <span className="bg-gradient-to-br from-[#880af9] via-[#fe057d] to-[#ffa701] text-white p-2 rounded-full">
+                                    <InstagramIcon />
+                                </span>
+                                <span className="font-semibold text-gray-700">Instagram</span>
                             </a>
                         </li>
                         <li>
-                            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 text-gray-700 hover:text-green-600">
-                                <WhatsAppIcon /> <span>WhatsApp</span>
+                            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 transition-colors">
+                                <span className="bg-green-500 text-white p-2 rounded-full">
+                                    <WhatsAppIcon />
+                                </span>
+                                <span className="font-semibold text-gray-700">WhatsApp</span>
                             </a>
                         </li>
                     </ul>
                 </div>
             </div>
-            <div className={`absolute bottom-0 right-0 flex flex-col items-center space-y-3 transition-all duration-300 ease-in-out ${isContactOpen ? 'opacity-0 translate-x-16 pointer-events-none' : 'opacity-100 translate-x-0'}`}>
+
+            {/* --- ICONOS FLOTANTES ORIGINALES --- */}
+            {/* Ahora se ocultan cuando el modal está abierto */}
+            <div className={`fixed bottom-4 right-4 z-40 flex flex-col items-center space-y-3 transition-opacity duration-300 ease-in-out ${isContactOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
                 <a href={instagramUrl} target="_blank" rel="noopener noreferrer" aria-label="Síguenos en Instagram" className="w-12 h-12 flex items-center justify-center bg-gradient-to-br from-[#880af9] via-[#fe057d] to-[#ffa701] text-white p-3 rounded-full shadow-lg hover:scale-110 transition-transform duration-300">
                     <InstagramIcon />
                 </a>
@@ -48,10 +61,9 @@ const FloatingSocials = ({ isContactOpen, onClose }) => {
                     <WhatsAppIcon />
                 </a>
             </div>
-        </div>
+        </>
     );
 };
-
 
 // --- HEADER ---
 const Header = ({ onContactClick }) => {
@@ -378,8 +390,8 @@ const MealPlansSection = ({ onContactClick }) => {
                             </div>
                         ))}
                     </div>
-                    {showLeftArrow && (<button onClick={() => handleScroll('left')} className="absolute top-1/2 left-0 md:-left-4 transform -translate-y-1/2 bg-white rounded-full p-3 shadow-lg z-10 hover:bg-gray-100 transition-transform duration-200 hover:scale-110" aria-label="Anterior"><ChevronLeft className="h-6 w-6 text-gray-800" /></button>)}
-                    {showRightArrow && (<button onClick={() => handleScroll('right')} className="absolute top-1/2 right-0 md:-right-4 transform -translate-y-1/2 bg-white rounded-full p-3 shadow-lg z-10 hover:bg-gray-100 transition-transform duration-200 hover:scale-110" aria-label="Siguiente"><ChevronRight className="h-6 w-6 text-gray-800" /></button>)}
+                    {showLeftArrow && (<button onClick={() => handleScroll('left')} className="absolute top-1/2 left-0 md:-left-4 transform -translate-y-1/2  bg-white rounded-full p-3 shadow-lg z-10 border-2 border-gray-100 hover:bg-gray-100 hover:border-white  transition-transform duration-200 hover:scale-110" aria-label="Anterior"><ChevronLeft className="h-6 w-6 text-gray-800" /></button>)}
+                    {showRightArrow && (<button onClick={() => handleScroll('right')} className="absolute top-1/2 right-0 md:-right-4 transform -translate-y-1/2 bg-white rounded-full p-3 shadow-lg z-10 border-2 border-gray-100 hover:bg-gray-100 hover:border-white transition-transform duration-200 hover:scale-110" aria-label="Siguiente"><ChevronRight className="h-6 w-6 text-gray-800" /></button>)}
                 </div>
             </div>
         </section>
@@ -410,9 +422,8 @@ const StarRating = ({ rating, setRating }) => {
     );
 };
 
-
 // Componente principal del formulario de reseña
-const FormularioResena = ({ onSubmit, onClose }) => {
+const FormularioResena = ({ isOpen, onSubmit, onClose }) => {
     const [nombre, setNombre] = useState('');
     const [instagram, setInstagram] =useState('');
     const [comentario, setComentario] = useState('');
@@ -426,14 +437,12 @@ const FormularioResena = ({ onSubmit, onClose }) => {
             return;
         }
         setError('');
-        // Llama a la función onSubmit que le pasaremos desde el componente padre
         onSubmit({ nombre, instagram, comentario, calificacion });
     };
 
     return (
-        // Modal o Pop-up
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-            <div className="bg-white rounded-lg shadow-xl p-6 w-full max-w-md">
+        <div className={`fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 transition-opacity duration-150 ease-in-out ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+            <div className={`bg-white rounded-lg shadow-xl p-6 w-full max-w-md transition-transform duration-150 ease-in-out ${isOpen ? 'scale-100' : 'scale-95'}`}>
                 <div className="flex justify-between items-center mb-4">
                     <h3 className="text-2xl font-bold text-gray-800">Deja tu Reseña</h3>
                     <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
@@ -461,7 +470,7 @@ const FormularioResena = ({ onSubmit, onClose }) => {
                                 value={instagram}
                                 onChange={(e) => setInstagram(e.target.value)}
                                 className="w-full p-2 border border-gray-300 rounded-md"
-                                placeholder="@usuario"
+                                placeholder="usuario"
                             />
                         </div>
                         <div>
@@ -495,9 +504,9 @@ const FormularioResena = ({ onSubmit, onClose }) => {
     );
 };
 
-const SuccessMessage = ({ onClose }) => (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-        <div className="bg-white rounded-lg shadow-xl p-8 text-center">
+const SuccessMessage = ({ isOpen, onClose }) => (
+    <div className={`fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 transition-opacity duration-150 ease-in-out ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+        <div className={`bg-white rounded-lg shadow-xl p-8 text-center transition-transform duration-150 ease-in-out ${isOpen ? 'scale-100' : 'scale-95'}`}>
             <h3 className="text-2xl font-bold text-green-600 mb-4">¡Gracias!</h3>
             <p className="text-gray-700 mb-6">Tu reseña ha sido enviada y será revisada por nuestro equipo.</p>
             <button
@@ -509,19 +518,6 @@ const SuccessMessage = ({ onClose }) => (
         </div>
     </div>
 );
-
-
-
-// --- NUEVA FUNCIÓN DE AYUDA para generar iniciales ---
-const getInitials = (name) => {
-    if (!name) return '??';
-    const words = name.trim().split(' ');
-    if (words.length > 1) {
-        return `${words[0][0]}${words[1][0]}`.toUpperCase();
-    }
-    return name.substring(0, 2).toUpperCase();
-};
-
 
 // --- PASO 3: Reemplaza tu TestimonialsSection actual con esta nueva versión ---
 const TestimonialsSection = () => {
@@ -582,14 +578,15 @@ const TestimonialsSection = () => {
 
     return (
         <section id="testimonios" className="py-20 bg-gray-50">
-            {/* Renderizado condicional de los pop-ups */}
-            {showForm && <FormularioResena onSubmit={handleReviewSubmit} onClose={() => setShowForm(false)} />}
-            {showSuccess && <SuccessMessage onClose={() => setShowSuccess(false)} />}
+            {/* Renderizado de los pop-ups. Ahora siempre están en el DOM
+                y su visibilidad se controla con la prop 'isOpen' */}
+            <FormularioResena isOpen={showForm} onSubmit={handleReviewSubmit} onClose={() => setShowForm(false)} />
+            <SuccessMessage isOpen={showSuccess} onClose={() => setShowSuccess(false)} />
 
             <div className="container mx-auto px-6">
                 <div className="text-center mb-12">
                     <h2 className="text-3xl md:text-4xl font-bold text-gray-800">Lo que dicen nuestros clientes</h2>
-                    <p className="text-gray-600 mt-2">Resultados reales.</p>
+                    <p className="text-gray-600 mt-2">Historias reales de personas reales.</p>
                 </div>
 
                 {/* Muestra un mensaje mientras carga o si hay un error */}
@@ -600,13 +597,11 @@ const TestimonialsSection = () => {
                 {!loading && !error && (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {resenas.map(resena => {
-                            // Generamos las iniciales y la URL del avatar aquí
-                            const initials = getInitials(resena.nombre);
+                            const initials = resena.nombre.trim().split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
                             const avatarUrl = `https://placehold.co/100x100/E2E8F0/4A5568?text=${initials}`;
 
                             return (
                                 <div key={resena.id} className="bg-white rounded-xl shadow-md p-8 text-center flex flex-col">
-                                    {/* Usamos la nueva URL del avatar */}
                                     <img src={avatarUrl} alt={`Avatar de ${resena.nombre}`} className="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-green-200" />
                                     <div className="flex justify-center mb-4">
                                         {[...Array(resena.calificacion)].map((_, i) => <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />)}
@@ -627,7 +622,7 @@ const TestimonialsSection = () => {
                 <div className="text-center mt-12">
                     <button
                         onClick={() => setShowForm(true)}
-                        className="bg-[#48b148] text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-lime-600 transition-transform duration-300 ease-in-out transform hover:scale-105"
+                        className="bg-lime-500 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-lime-600 transition-transform duration-300 ease-in-out transform hover:scale-105"
                     >
                         Deja tu Reseña
                     </button>
@@ -636,7 +631,6 @@ const TestimonialsSection = () => {
         </section>
     );
 };
-
 
 const WhyFitFoodSection = () => (
     <section id="porque" className="py-20 bg-gray-50">
