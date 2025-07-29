@@ -671,10 +671,100 @@ const WhyFitFoodSection = () => (
         </div>
     </section>
 );
+const TerminosPage = () => (
+    <div className="container mx-auto px-6 py-12">
+        <h1 className="text-3xl font-bold mb-6">Términos y Condiciones</h1>
+        <div className="space-y-4 text-gray-700">
+            <p><strong>Última actualización:</strong> 28 de julio de 2025</p>
+            <p>Bienvenido/a a FitFood. Al acceder o utilizar nuestro servicio, aceptas estar sujeto a estos Términos.</p>
+            
+            <h2 className="text-2xl font-semibold pt-4">1. Servicios</h2>
+            <p>FitFood ofrece la venta y entrega de planes de comida, menús y productos alimenticios individuales ("Productos") a través de nuestro sitio web.</p>
+            
+            <h2 className="text-2xl font-semibold pt-4">2. Pedidos y Pagos</h2>
+            <p>Los precios están expresados en Pesos Argentinos [ARS] e incluyen los impuestos aplicables. Nos reservamos el derecho de modificar los precios en cualquier momento.</p>
+            
+            <h2 className="text-2xl font-semibold pt-4">3. Entregas</h2>
+            <p>Realizamos entregas únicamente en las áreas especificadas en nuestro sitio web. Es responsabilidad del cliente asegurarse de que haya alguien disponible para recibir el pedido.</p>
+            <p>Los horarios de entrega son estimados y pueden variar debido a factores externos. Haremos todo lo posible por cumplir con los plazos indicados.</p>
+            <p>Es responsabilidad del cliente asegurarse de que haya alguien disponible para recibir el pedido en la dirección y horario acordados.</p>
+
+            <h2 className="text-2xl font-semibold pt-4">4. Reseñas y Contenido del Usuario</h2>
+            <p>Al enviar una reseña o cualquier otro contenido a nuestro sitio, nos otorgas una licencia no exclusiva, libre de regalías y perpetua para usar, reproducir y mostrar dicho contenido en relación con nuestro servicio. Eres el único responsable del contenido que publicas.</p>
+
+            <h2 className="text-2xl font-semibold pt-4">5. Propiedad Intelectual</h2>
+            <p>Todo el contenido presente en este sitio web, incluyendo textos, gráficos, logos e imágenes, es propiedad de FitFood y está protegido por las leyes de derechos de autor.</p>
+
+            <h2 className="text-2xl font-semibold pt-4">6. Limitación de Responsabilidad</h2>
+            <p>FitFood no será responsable por ningún daño indirecto, incidental o consecuente que surja del uso de nuestro servicio o productos.</p>
+            
+            <h2 className="text-2xl font-semibold pt-4">8. Contacto</h2>
+            <p>Nos reservamos el derecho de modificar estos Términos en cualquier momento. Te notificaremos de cualquier cambio publicando los nuevos Términos en esta página.</p>
+            <p>Si tienes alguna pregunta sobre estos Términos, por favor contáctanos a través de contacto@fitfood.com.</p>
+
+        </div>
+    </div>
+);
+
+const PoliticaPrivacidadPage = () => (
+    <div className="container mx-auto px-6 py-12">
+        <h1 className="text-3xl font-bold mb-6">Política de Privacidad</h1>
+        <div className="space-y-4 text-gray-700">
+            <p><strong>Última actualización:</strong> 28 de julio de 2025</p>
+            <p>En FitFood, valoramos tu privacidad y nos comprometemos a proteger tu información personal. Esta Política de Privacidad explica cómo recopilamos, usamos y protegemos la información que nos proporcionas.</p>
+            
+            <h2 className="text-2xl font-semibold pt-4">1. Información que Recopilamos</h2>
+            <p>Podemos recopilar la siguiente información:</p>
+            <ul className="list-disc list-inside ml-4">
+                <li><strong>Información de Contacto:</strong> Nombre, dirección de correo electrónico, número de teléfono y dirección de entrega.</li>
+                <li><strong>Información de Reseñas:</strong> Nombre y nombre de usuario de Instagram.</li>
+                <li><strong>Información de Pago:</strong> Aunque no almacenamos los detalles completos de tu tarjeta de crédito, recopilamos la información necesaria para procesar los pagos a través de nuestros proveedores de servicios de pago seguros.</li>
+                <li><strong>Información Técnica:</strong> Dirección IP, tipo de navegador y datos de uso del sitio web a través de cookies.</li>
+            </ul>
+            
+            <h2 className="text-2xl font-semibold pt-4">2. Cómo Usamos tu Información</h2>
+            <p>Utilizamos la información que recopilamos para procesar y entregar tus pedidos, comunicarnos contigo y mejorar nuestro servicio.</p>
+            <ul className="list-disc list-inside ml-4">
+                <li><strong>Procesar y entregar tus pedidos.</strong></li>
+                <li><strong>Comunicarnos contigo sobre tu pedido o consultas.</strong></li>
+                <li><strong>Mejorar nuestro sitio web y servicios.</strong></li>
+                <li><strong>Mostrar reseñas y testimonios en nuestro sitio (con tu consentimiento implícito al enviarla).</strong></li>
+                <li><strong>Enviarte información promocional, si has optado por recibirla.</strong></li>
+            </ul>
+            <h2 className="text-2xl font-semibold pt-4">3. Cómo Protegemos tu Información</h2>
+            <p>Implementamos una variedad de medidas de seguridad para mantener la seguridad de tu información personal. Sin embargo, ningún método de transmisión por Internet o de almacenamiento electrónico es 100% seguro.</p>
+
+            <h2 className="text-2xl font-semibold pt-4">4. No Compartimos tu Información</h2>
+            <p>No vendemos, intercambiamos ni transferimos de ninguna manera tu información personal a terceros, excepto a las partes de confianza que nos asisten en la operación de nuestro sitio web o en la conducción de nuestro negocio (como el servicio de entrega o el procesador de pagos), siempre y cuando dichas partes se comprometan a mantener esta información confidencial.</p>
+
+            <h2 className="text-2xl font-semibold pt-4">5. Tus Derechos</h2>
+            <p>Tienes derecho a acceder, rectificar o eliminar tu información personal que tenemos almacenada. Para ejercer estos derechos, por favor contáctanos.</p>
+
+            <h2 className="text-2xl font-semibold pt-4">6. Cambios en Nuestra Política de Privacidad</h2>
+            <p>Si decidimos cambiar nuestra política de privacidad, publicaremos esos cambios en esta página.</p>
+
+            <h2 className="text-2xl font-semibold pt-4">7. Contacto</h2>
+            <p>Si tienes alguna pregunta sobre esta Política de Privacidad, contáctanos a privacidad@fitfood.com.</p>
+
+        </div>
+    </div>
+);
+// --- COMPONENTE PARA LA PÁGINA PRINCIPAL ---
+// Agrupamos todas tus secciones existentes en un solo componente
+const HomePage = ({ onContactClick }) => (
+    <>
+        <HeroSection />
+        <MealMenuSection />
+        <MealPlansSection onContactClick={onContactClick} />
+        <TestimonialsSection />
+        <WhyFitFoodSection />
+    </>
+);
+
 
 const Footer = () => (
     <footer id="contacto-footer" className="bg-gray-800 text-white">
-        <div className="container mx-auto px-6 py-4">
+        <div className="container mx-auto px-6 py-12">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
                     <h4 className="text-lg font-semibold mb-4">FitFood</h4>
@@ -691,34 +781,58 @@ const Footer = () => (
                 <div>
                     <h4 className="text-lg font-semibold mb-4">Legal</h4>
                     <ul className="space-y-2">
-                        <li><a href="#" className="text-gray-400 hover:text-white">Términos y Condiciones</a></li>
-                        <li><a href="#" className="text-gray-400 hover:text-white">Política de Privacidad</a></li>
+                        {/* --- CAMBIO: Usamos '#' para la navegación interna --- */}
+                        <li><a href="#/terminos-y-condiciones" className="text-gray-400 hover:text-white">Términos y Condiciones</a></li>
+                        <li><a href="#/politica-de-privacidad" className="text-gray-400 hover:text-white">Política de Privacidad</a></li>
                     </ul>
                 </div>
             </div>
-            <div className="mt-4 border-t border-gray-700 pt-4 text-center text-gray-500">
+            <div className="mt-8 border-t border-gray-700 pt-6 text-center text-gray-500">
                 <p>&copy; {new Date().getFullYear()} FitFood. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
 );
 
-// --- COMPONENTE PRINCIPAL DE LA APP ---
+
+// --- COMPONENTE PRINCIPAL DE LA APP MODIFICADO ---
+// Ahora funciona como un router simple
 export default function App() {
-const [isContactOpen, setIsContactOpen] = useState(false);
+    const [isContactOpen, setIsContactOpen] = useState(false);
+    // 1. Nuevo estado para controlar la página actual
+    const [currentPage, setCurrentPage] = useState(window.location.hash || '#/');
+
+    // 2. useEffect para escuchar cambios en la URL (cuando el usuario hace clic en los enlaces)
+    useEffect(() => {
+        const handleHashChange = () => {
+            setCurrentPage(window.location.hash || '#/');
+        };
+        window.addEventListener('hashchange', handleHashChange);
+        // Limpieza del listener
+        return () => window.removeEventListener('hashchange', handleHashChange);
+    }, []);
+
+    // 3. Función para renderizar la página correcta
+    const renderPage = () => {
+        switch (currentPage) {
+            case '#/terminos-y-condiciones':
+                return <TerminosPage />;
+            case '#/politica-de-privacidad':
+                return <PoliticaPrivacidadPage />;
+            default:
+                return <HomePage onContactClick={() => setIsContactOpen(true)} />;
+        }
+    };
 
     return (
         <div className="bg-white font-sans">
             <FloatingSocials isContactOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
             <Header onContactClick={() => setIsContactOpen(true)} />
             <main>
-                <HeroSection />
-                <MealMenuSection />
-                <MealPlansSection onContactClick={() => setIsContactOpen(true)} />
-                <TestimonialsSection />
-                <WhyFitFoodSection />
+                {/* 4. Llamamos a la función que decide qué página mostrar */}
+                {renderPage()}
             </main>
-        <Footer />
+            <Footer />
         </div>
-);
+    );
 }
