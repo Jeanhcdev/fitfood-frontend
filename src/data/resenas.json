@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "nombre": "Martina S.",
+    "instagram": "martu_fitlife",
+    "comentario": "¡Me encanta FitFood! La comida es deliciosa y me ayudó muchísimo a alcanzar mis objetivos de peso sin sacrificar el sabor. ¡El Plan Keto es un 10!",
+    "calificacion": 5
+  },
+  {
+    "id": 2,
+    "nombre": "Juan P.",
+    "instagram": null,
+    "comentario": "Excelente servicio y puntualidad. El menú tiene mucha variedad y las porciones son perfectas. Altamente recomendado para gente con poco tiempo.",
+    "calificacion": 4
+  },
+  {
+    "id": 3,
+    "nombre": "Sofía R.",
+    "instagram": "sofia.runners",
+    "comentario": "Pedí el Plan Veggie y superó mis expectativas. Muy frescos y bien elaborados. Mi única sugerencia sería más opciones de postres saludables.",
+    "calificacion": 4
+  }
+]

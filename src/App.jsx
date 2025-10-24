@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Smile, Zap, Leaf, Heart, Beef,Star, Menu, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import fitfood_icono from './assets/fitfood.svg';
-
+import menuData from './data/menu.json';
+import planesData from './data/planes.json';
+import resenasData from './data/resenas.json';
 
 // --- COMPONENTE DE ICONOS SOCIALES Y MODAL DE CONTACTO ---
 const FloatingSocials = ({ isContactOpen, onClose }) => {
@@ -20,9 +22,7 @@ const FloatingSocials = ({ isContactOpen, onClose }) => {
     return (
         <>
             {/* --- MODAL DE CONTACTO --- */}
-            {/* Contenedor principal del modal, ocupa toda la pantalla */}
             <div className={`fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 transition-opacity duration-150 ease-in-out ${isContactOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-                {/* Contenido del modal con su propia transición */}
                 <div className={`bg-white rounded-lg shadow-xl p-6 w-full max-w-sm transition-transform duration-150 ease-in-out ${isContactOpen ? 'scale-100' : 'scale-95'}`}>
                     <div className="flex justify-between items-center mb-4">
                         <h3 className="text-2xl font-bold text-gray-800">Contáctanos</h3>
@@ -52,7 +52,6 @@ const FloatingSocials = ({ isContactOpen, onClose }) => {
             </div>
 
             {/* --- ICONOS FLOTANTES ORIGINALES --- */}
-            {/* Ahora se ocultan cuando el modal está abierto */}
             <div className={`fixed bottom-4 right-4 z-40 flex flex-col items-center space-y-3 transition-opacity duration-300 ease-in-out ${isContactOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
                 <a href={instagramUrl} target="_blank" rel="noopener noreferrer" aria-label="Síguenos en Instagram" className="w-12 h-12 flex items-center justify-center bg-gradient-to-br from-[#880af9] via-[#fe057d] to-[#ffa701] text-white p-3 rounded-full shadow-lg hover:scale-110 transition-transform duration-300">
                     <InstagramIcon />
@@ -176,13 +175,11 @@ const TabbedMenuView = ({ menu }) => {
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-800">Tienes que probar</h2>
             </div>
             <div className="border-b border-gray-200">
-                     {/* --- CAMBIO 2: Reducido el espaciado y padding en móviles --- */}
                 <nav className="-mb-px flex space-x-2 sm:space-x-6 px-2 sm:px-6 overflow-x-auto" aria-label="Tabs">
                     {categoriaKeys.map(categoriaKey => (
                         <button
                             key={categoriaKey}
                             onClick={() => setActiveTab(categoriaKey)}
-                            // --- CAMBIO 2: Reducido el tamaño del texto en móviles ---
                             className={`whitespace-nowrap py-4 px-1 border-b-2 font-medium text-lg sm:text-lg transition-colors duration-200 ${activeTab === categoriaKey ? 'border-[#48b148] text-lime-700' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'}`}
                         >
                             {categoriaKey.replace(/_/g, ' ')}
@@ -206,29 +203,8 @@ const TabbedMenuView = ({ menu }) => {
 };
 
 const MealMenuSection = () => {
-    const [menu, setMenu] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
-    useEffect(() => {
-        const fetchMenu = async () => {
-            try {
-                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/menus/destacado/`);
-                if (!response.ok) { throw new Error('La respuesta de la red no fue exitosa'); }
-                const data = await response.json();
-                setMenu(data);
-            } catch (err) {
-                setError(err.message);
-                console.error("Error al obtener el menú:", err);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchMenu();
-    }, []);
-
-    if (loading) return <div className="text-center py-20">Cargando Menú...</div>;
-    if (error) return <div className="text-center py-20 text-red-500">Error al cargar el menú.</div>;
+    const menu = menuData;
+    
     if (!menu) return null;
 
     return (
@@ -319,12 +295,11 @@ const MealPlanCard = ({ plan, onContactClick }) => {
     );
 };
 const MealPlansSection = ({ onContactClick }) => {
-    const [plans, setPlans] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+
     const [showLeftArrow, setShowLeftArrow] = useState(false);
     const [showRightArrow, setShowRightArrow] = useState(false);
     const scrollContainerRef = useRef(null);
+    const plans = planesData;
 
     const checkArrowVisibility = () => {
         const container = scrollContainerRef.current;
@@ -334,22 +309,6 @@ const MealPlansSection = ({ onContactClick }) => {
             setShowRightArrow(scrollLeft < scrollWidth - clientWidth - 1);
         }
     };
-
-    useEffect(() => {
-        const fetchPlans = async () => {
-            try {
-                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/planes/`);
-                if (!response.ok) { throw new Error('La respuesta de la red no fue exitosa'); }
-                const data = await response.json();
-                setPlans(data);
-            } catch (err) {
-                setError(err.message);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchPlans();
-    }, []);
 
     useEffect(() => {
         const container = scrollContainerRef.current;
@@ -362,7 +321,7 @@ const MealPlansSection = ({ onContactClick }) => {
                 window.removeEventListener('resize', checkArrowVisibility);
             };
         }
-    }, [plans, loading]);
+    }, [plans]);
 
     const handleScroll = (direction) => {
         const container = scrollContainerRef.current;
@@ -372,8 +331,6 @@ const MealPlansSection = ({ onContactClick }) => {
         }
     };
 
-    if (loading) return <div className="text-center py-20">Cargando planes...</div>;
-    if (error) return <div className="text-center py-20 text-red-500">Error: {error}</div>;
 
     return (
         <section id="planes" className="py-20 bg-gray-50">
@@ -422,209 +379,87 @@ const StarRating = ({ rating, setRating }) => {
     );
 };
 
-// Componente principal del formulario de reseña
-const FormularioResena = ({ isOpen, onSubmit, onClose }) => {
-    const [nombre, setNombre] = useState('');
-    const [instagram, setInstagram] =useState('');
-    const [comentario, setComentario] = useState('');
-    const [calificacion, setCalificacion] = useState(0);
-    const [error, setError] = useState('');
+const WhatsAppIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zM12.04 21.08c-1.53 0-3.03-.4-4.36-1.18l-.31-.18-3.24.85.87-3.17-.2-.33c-.85-1.4-1.31-3-1.31-4.68 0-4.9 3.98-8.88 8.88-8.88 4.9 0 8.88 3.98 8.88 8.88 0 4.9-3.98 8.88-8.88 8.88zm4.43-6.83c-.24-.12-1.45-.72-1.68-.8s-.39-.12-.56.12c-.17.24-.63.8-.78.96-.14.17-.29.19-.53.07s-1.02-.38-1.94-1.2c-.72-.64-1.2-1.45-1.34-1.68-.14-.24-.01-.38.11-.49.11-.11.24-.29.36-.43.12-.14.17-.24.26-.41.09-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.42h-.48c-.17 0-.43.06-.66.31-.22.24-.87.85-.87 2.07s.89 2.4.98 2.56c.09.17 1.75 2.67 4.23 3.72.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.45-.59 1.65-1.16.2-.56.2-1.04.14-1.16-.07-.12-.24-.19-.48-.31z"/></svg>
+);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (calificacion === 0) {
-            setError('Por favor, selecciona una calificación.');
-            return;
-        }
-        setError('');
-        onSubmit({ nombre, instagram, comentario, calificacion });
-    };
-
+const WhatsappAvisoModal = ({ isOpen, onClose }) => {
+    const whatsappNumber = "5491112345678"; 
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=Hola%2C%20quisiera%20dejar%20una%20rese%C3%B1a%20para%20FitFood.`; 
+    
     return (
         <div className={`fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 transition-opacity duration-150 ease-in-out ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
             <div className={`bg-white rounded-lg shadow-xl p-6 w-full max-w-md transition-transform duration-150 ease-in-out ${isOpen ? 'scale-100' : 'scale-95'}`}>
                 <div className="flex justify-between items-center mb-4">
-                    <h3 className="text-2xl font-bold text-gray-800">Deja tu Reseña</h3>
+                    <h3 className="text-2xl font-bold text-gray-800">¡Gracias por tu apoyo!</h3>
                     <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
-                        <X size={24} />
+                        <X size={24} /> 
                     </button>
                 </div>
-                <form onSubmit={handleSubmit}>
-                    <div className="space-y-4">
-                        <div>
-                            <label htmlFor="nombre" className="block text-sm font-medium text-gray-700 mb-1">Tu Nombre</label>
-                            <input
-                                type="text"
-                                id="nombre"
-                                value={nombre}
-                                onChange={(e) => setNombre(e.target.value)}
-                                className="w-full p-2 border border-gray-300 rounded-md"
-                                required
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="instagram" className="block text-sm font-medium text-gray-700 mb-1">Tu Instagram (Opcional)</label>
-                            <input
-                                type="text"
-                                id="instagram"
-                                value={instagram}
-                                onChange={(e) => setInstagram(e.target.value)}
-                                className="w-full p-2 border border-gray-300 rounded-md"
-                                placeholder="usuario"
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="comentario" className="block text-sm font-medium text-gray-700 mb-1">Tu Comentario</label>
-                            <textarea
-                                id="comentario"
-                                value={comentario}
-                                onChange={(e) => setComentario(e.target.value)}
-                                rows="4"
-                                className="w-full p-2 border border-gray-300 rounded-md"
-                                required
-                            ></textarea>
-                        </div>
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2 text-center">Calificación</label>
-                            <StarRating rating={calificacion} setRating={setCalificacion} />
-                        </div>
-                        {error && <p className="text-red-500 text-sm text-center">{error}</p>}
-                    </div>
-                    <div className="mt-6">
-                        <button
-                            type="submit"
-                            className="w-full bg-green-500 text-white py-2 px-4 rounded-md font-semibold hover:bg-green-600 transition-colors"
-                        >
-                            Enviar Reseña
-                        </button>
-                    </div>
-                </form>
+                
+                <p className="text-gray-700 mb-6">
+                    Valoramos mucho tu opinión. Presiona el botón de abajo para enviarnos tu reseña a través de WhatsApp.
+                </p>
+                
+                <a 
+                    href={whatsappUrl} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    onClick={onClose} 
+                    className="flex items-center justify-center bg-green-500 text-white px-8 py-3 rounded-full font-semibold hover:bg-green-600 transition-colors w-full"
+                >
+                    <WhatsAppIcon className="mr-2 h-6 w-6" />
+                    Enviar Reseña por WhatsApp
+                </a>
             </div>
         </div>
     );
 };
 
-const SuccessMessage = ({ isOpen, onClose }) => (
-    <div className={`fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 transition-opacity duration-150 ease-in-out ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-        <div className={`bg-white rounded-lg shadow-xl p-8 text-center transition-transform duration-150 ease-in-out ${isOpen ? 'scale-100' : 'scale-95'}`}>
-            <h3 className="text-2xl font-bold text-green-600 mb-4">¡Gracias!</h3>
-            <p className="text-gray-700 mb-6">Tu reseña ha sido enviada y será revisada por nuestro equipo.</p>
-            <button
-                onClick={onClose}
-                className="bg-green-500 text-white py-2 px-6 rounded-md font-semibold hover:bg-green-600 transition-colors"
-            >
-                Cerrar
-            </button>
-        </div>
-    </div>
-);
-
-// --- PASO 3: Reemplaza tu TestimonialsSection actual con esta nueva versión ---
 const TestimonialsSection = () => {
-    const [resenas, setResenas] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const resenas = resenasData;
+    const [showForm, setShowForm] = useState(false); 
     
-    // Estados para controlar los pop-ups
-    const [showForm, setShowForm] = useState(false);
-    const [showSuccess, setShowSuccess] = useState(false);
-
-    // Función para obtener las reseñas aprobadas de la API
-    const fetchResenas = async () => {
-        setLoading(true);
-        try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/reseñas/`);
-            if (!response.ok) {
-                throw new Error('No se pudieron cargar las reseñas.');
-            }
-            const data = await response.json();
-            setResenas(data);
-        } catch (err) {
-            setError(err.message);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    // useEffect para cargar las reseñas cuando el componente se monta
-    useEffect(() => {
-        fetchResenas();
-    }, []);
-
-    // Función para manejar el envío del formulario
-    const handleReviewSubmit = async (formData) => {
-        try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/reseñas/crear/`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
-            });
-
-            if (!response.ok) {
-                throw new Error('Hubo un problema al enviar tu reseña.');
-            }
-            
-            // Cierra el formulario y muestra el mensaje de éxito
-            setShowForm(false);
-            setShowSuccess(true);
-            
-        } catch (err) {
-            console.error(err);
-            alert(err.message); // Muestra un alerta si hay un error
-        }
-    };
 
     return (
         <section id="testimonios" className="py-20 bg-gray-50">
-            {/* Renderizado de los pop-ups. Ahora siempre están en el DOM
-                y su visibilidad se controla con la prop 'isOpen' */}
-            <FormularioResena isOpen={showForm} onSubmit={handleReviewSubmit} onClose={() => setShowForm(false)} />
-            <SuccessMessage isOpen={showSuccess} onClose={() => setShowSuccess(false)} />
+            <WhatsappAvisoModal isOpen={showForm} onClose={() => setShowForm(false)} />
 
             <div className="container mx-auto px-6">
+                
                 <div className="text-center mb-12">
                     <h2 className="text-3xl md:text-4xl font-bold text-gray-800">Lo que dicen nuestros clientes</h2>
                     <p className="text-gray-600 mt-2">Historias reales de personas reales.</p>
                 </div>
 
-                {/* Muestra un mensaje mientras carga o si hay un error */}
-                {loading && <p className="text-center">Cargando testimonios...</p>}
-                {error && <p className="text-center text-red-500">{error}</p>}
-                
-                {/* Muestra los testimonios si no está cargando y no hay error */}
-                {!loading && !error && (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {resenas.map(resena => {
-                            const initials = resena.nombre.trim().split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
-                            const avatarUrl = `https://placehold.co/100x100/E2E8F0/4A5568?text=${initials}`;
-
-                            return (
-                                <div key={resena.id} className="bg-white rounded-xl shadow-md p-8 text-center flex flex-col">
-                                    <img src={avatarUrl} alt={`Avatar de ${resena.nombre}`} className="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-green-200" />
-                                    <div className="flex justify-center mb-4">
-                                        {[...Array(resena.calificacion)].map((_, i) => <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />)}
-                                        {[...Array(5 - resena.calificacion)].map((_, i) => <Star key={i} className="w-5 h-5 text-gray-300 fill-current" />)}
-                                    </div>
-                                    <p className="text-gray-600 italic mb-4 flex-grow">"{resena.comentario}"</p>
-                                    <div>
-                                        <h4 className="font-semibold text-gray-800">{resena.nombre}</h4>
-                                        {resena.instagram && <p className="text-sm text-pink-500 mt-1">@{resena.instagram}</p>}
-                                    </div>
+                {/* Muestra los testimonios estáticos */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {resenas.map(resena => {
+                        const initials = resena.nombre.trim().split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+                        const avatarUrl = `https://placehold.co/100x100/E2E8F0/4A5568?text=${initials}`;
+                        
+                        return (
+                            <div key={resena.id} className="bg-white rounded-xl shadow-md p-8 text-center flex flex-col">
+                                <img src={avatarUrl} alt={`Avatar de ${resena.nombre}`} className="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-green-200" />
+                                <div className="flex justify-center mb-4">
+                                    {[...Array(resena.calificacion)].map((_, i) => <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />)}
+                                    {[...Array(5 - resena.calificacion)].map((_, i) => <Star key={i} className="w-5 h-5 text-gray-300 fill-current" />)}
                                 </div>
-                            );
-                        })}
-                    </div>
-                )}
+                                <p className="text-gray-700 italic mb-4 flex-grow">"{resena.comentario}"</p>
+                                <p className="font-semibold text-gray-900">{resena.nombre}</p>
+                                {resena.instagram && <p className="text-sm text-gray-500">@{resena.instagram}</p>}
+                            </div>
+                        );
+                    })}
+                </div>
                 
-                {/* Botón para abrir el formulario */}
+                {/* Botón de reseña */}
                 <div className="text-center mt-12">
-                    <button
-                        onClick={() => setShowForm(true)}
-                        className="bg-lime-500 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-lime-600 transition-transform duration-300 ease-in-out transform hover:scale-105"
+                    <button 
+                        onClick={() => setShowForm(true)} 
+                        className="bg-green-500 text-white px-8 py-3 rounded-full font-semibold hover:bg-green-600 transition-colors"
                     >
-                        Deja tu Reseña
+                        Dejar una Reseña
                     </button>
                 </div>
             </div>
@@ -744,7 +579,6 @@ const PoliticaPrivacidadPage = () => (
     </div>
 );
 // --- COMPONENTE PARA LA PÁGINA PRINCIPAL ---
-// Agrupamos todas tus secciones existentes en un solo componente
 const HomePage = ({ onContactClick }) => (
     <>
         <HeroSection />
@@ -775,7 +609,6 @@ const Footer = () => (
                 <div>
                     <h4 className="text-lg font-semibold mb-4">Legal</h4>
                     <ul className="space-y-2">
-                        {/* --- CAMBIO: Usamos '#' para la navegación interna --- */}
                         <li><a href="#/terminos-y-condiciones" className="text-gray-400 hover:text-white">Términos y Condiciones</a></li>
                         <li><a href="#/politica-de-privacidad" className="text-gray-400 hover:text-white">Política de Privacidad</a></li>
                     </ul>
@@ -790,23 +623,18 @@ const Footer = () => (
 
 
 // --- COMPONENTE PRINCIPAL DE LA APP MODIFICADO ---
-// Ahora funciona como un router simple
 export default function App() {
     const [isContactOpen, setIsContactOpen] = useState(false);
-    // 1. Nuevo estado para controlar la página actual
     const [currentPage, setCurrentPage] = useState(window.location.hash || '#/');
 
-    // 2. useEffect para escuchar cambios en la URL (cuando el usuario hace clic en los enlaces)
     useEffect(() => {
         const handleHashChange = () => {
             setCurrentPage(window.location.hash || '#/');
         };
         window.addEventListener('hashchange', handleHashChange);
-        // Limpieza del listener
         return () => window.removeEventListener('hashchange', handleHashChange);
     }, []);
 
-    // 3. Función para renderizar la página correcta
     const renderPage = () => {
         switch (currentPage) {
             case '#/terminos-y-condiciones':
@@ -823,7 +651,6 @@ export default function App() {
             <FloatingSocials isContactOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
             <Header onContactClick={() => setIsContactOpen(true)} />
             <main>
-                {/* 4. Llamamos a la función que decide qué página mostrar */}
                 {renderPage()}
             </main>
             <Footer />

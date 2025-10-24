@@ -1,0 +1,27 @@
+{
+  "id": 1,
+  "nombre": "Menú Semanal Destacado",
+  "descripcion": "Los platos más populares...",
+  "categorias": {
+    "Platos_Principales": [
+      {
+        "id": 101,
+        "nombre": "Bowl de Pollo y Quinoa",
+        "precio_venta": "1500"
+      }, 
+      { 
+        "id": 102,
+        "nombre": "Salmón con Vegetales",
+        "precio_venta": "1900" 
+      }
+    ],
+    "Postres": [
+      {
+        "id": 201,
+        "nombre": "Mousse de Palta y Cacao",
+        "precio_venta": "800",
+        "imagen_url": "/platos/pollo_quinoa.jpeg"
+      }
+    ]
+  }
+}
