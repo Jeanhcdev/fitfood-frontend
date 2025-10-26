@@ -1,37 +1,37 @@
 [
   {
     "id": 1,
-    "name": "Plan Fit",
-    "description": "Ideal para mantenimiento y un estilo de vida activo. Comidas ricas en proteínas.",
+    "name": "Estandar",
+    "description": "Comidas equilibradas con porciones adecuadas de proteínas, carbohidratos y grasas saludables,pensadas para mantener energía y bienestar diario.",
     "color": "verde",
-    "icon": "Zap",
-    "cantidad_viandas": 10,
-    "permite_cantidad_personalizada": false,
-    "precio": "7500"
+    "icon": "Leaf",
+    "cantidad_viandas": null,
+    "permite_cantidad_personalizada": true,
+    "precio": null
   },
   {
     "id": 2,
-    "name": "Plan Veggie",
-    "description": "Opciones 100% basadas en plantas, ricas en fibra y nutrientes esenciales.",
+    "name": "Definición",
+    "description": "Comidas balanceadas, altas en proteína, bajas en grasas y diseñadas para apoyar la pérdida de grasa y mantener masa muscular.",
     "color": "amarillo",
-    "icon": "Leaf",
-    "cantidad_viandas": 10,
-    "permite_cantidad_personalizada": false,
-    "precio": "6900"
+    "icon": "Zap",
+    "cantidad_viandas": null,
+    "permite_cantidad_personalizada": true,
+    "precio": null
   },
   {
     "id": 3,
-    "name": "Plan Keto",
-    "description": "Bajo en carbohidratos y alto en grasas saludables, para entrar en cetosis.",
+    "name": "Aumento",
+    "description": "Comidas nutritivas, ricas en proteínas y carbohidratos de calidad, con grasas saludables, diseñadas para favorecer el crecimiento y la recuperación muscular.",
     "color": "rojo",
     "icon": "Beef",
-    "cantidad_viandas": 5,
-    "permite_cantidad_personalizada": false,
-    "precio": "4200"
+    "cantidad_viandas": null,
+    "permite_cantidad_personalizada": true,
+    "precio": null
   },
   {
     "id": 4,
-    "name": "Plan Personalizado",
+    "name": " Plan Personalizado",
     "description": "Elige la cantidad y el tipo de viandas que se ajusten perfectamente a tus necesidades.",
     "color": "purpura",
     "icon": "Star",

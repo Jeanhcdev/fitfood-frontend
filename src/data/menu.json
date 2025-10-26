@@ -3,24 +3,51 @@
   "nombre": "Menú Semanal Destacado",
   "descripcion": "Los platos más populares...",
   "categorias": {
-    "Platos_Principales": [
+    "Ensaladas": [
       {
         "id": 101,
-        "nombre": "Bowl de Pollo y Quinoa",
-        "precio_venta": "1500"
-      }, 
-      { 
+        "nombre": "Ensalada Verde",
+        "descripcion":"Combinación ligera de hojas frescas y vegetales, ideal para una alimentación balanceada.",
+        "precio_venta": null,
+        "imagen_url": "/platos/ensalada_verde.jpeg"
+      },
+      {
         "id": 102,
-        "nombre": "Salmón con Vegetales",
-        "precio_venta": "1900" 
+        "nombre":"Ensalada Con Huevos",
+        "descripcion":"Mix de hojas verdes, vegetales frecos y huevo duro, rica en proteína y baja en calorías.",
+        "precio_venta" : null,
+        "imagen_url": "/platos/ensalada_con_huevo.jpeg"
+
+      },
+      {
+        "id": 103,
+        "nombre": "Ensalada César Con Pollo",
+        "descripcion": "Lechuga fresca, jugoso pollo a la plancha, croutones integrales, parmesano ligero y aderezo césar bajo en grasas.",
+        "precio_venta": null,
+        "imagen_url": "/platos/ensalada_cesar_con_pollo.jpeg"
       }
     ],
-    "Postres": [
+    "Snacks": [
       {
-        "id": 201,
-        "nombre": " arroz",
-        "precio_venta": "800",
-        "imagen_url": "/platos/pollo_quinoa.jpeg"
+        "id": 301,
+        "nombre": "Yogurt Griego",
+        "descripcion":"Es una fuente natural de proteína de alta calidad que ayuda a la recuperación y construcción muscular. Bajo en grasas y azúcares, es perfecto como desayuno, snack o post-entrenamiento.",
+        "precio_venta": null,
+        "imagen_url":"/platos/yogurt_griego.jpeg"
+      },
+      {
+        "id": 302,
+        "nombre": "Muffin",
+        "descripcion":"Creados en base a proteínas que ayuda al aumento de masa muscular y a controlar el hambre entre comidas.",
+        "precio_venta": null,
+        "imagen_url":"/platos/muffin.jpeg"
+      },
+      {
+        "id": 303,
+        "nombre": "Carrot Cake",
+        "descripcion": "Es un bizcocho suave hecho a base de zanahoria rallada, que le aporta dulzor natural y textura jugosa, incluye frutos secos. Proporciona energía y fibra. Puede ser un rico postre o permitido de la semana.",
+        "precio_venta": null,
+        "imagen_url": "/platos/carrot_cake.jpeg"
       }
     ]
   }
